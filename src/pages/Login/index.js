@@ -7,43 +7,55 @@ import {
 import {
   Input,
   InputLabel,
-  InputAdornment 
+  InputAdornment
 } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+
+import { UsuarioContext } from 'common/contexts/Usuario';
 
 function Login() {
+
+  const history = useHistory();
+
   return (
-    <Container>
-      <Titulo>
-        Insira o seu nome
-      </Titulo>
-      <InputContainer>
-        <InputLabel>
-          Nome
-        </InputLabel>
-        <Input
-          type="text"
-        />
-      </InputContainer>
-      <InputContainer>
-        <InputLabel>
-          Saldo
-        </InputLabel>
-        <Input
-        type="number"
-        startAdornment={
-          <InputAdornment position="start">
-            R$
-          </InputAdornment>
-        }
-      />
-      </InputContainer>
-      <Button
-        variant="contained"
-        color="primary"
-      >
-        Avançar
-      </Button>
-    </Container>
+    <UsuarioContext.Consumer>
+      {({nome, setNome, saldo, setSaldo}) => {
+        return <Container>
+          <Titulo>
+            Insira o seu nome
+          </Titulo>
+          <InputContainer>
+            <InputLabel>
+              Nome
+            </InputLabel>
+            <Input value={nome} onChange={e => setNome(e.target.value)} type="text"
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputLabel>
+              Saldo
+            </InputLabel>
+            <Input
+              value={saldo}
+              onChange={e => setSaldo(e.target.value)}
+              type="number"
+              startAdornment={
+                <InputAdornment position="start">
+                  R$
+                </InputAdornment>
+              }
+            />
+          </InputContainer>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.push('/feira')}
+          >
+            Avançar
+          </Button>
+        </Container>
+      }}
+    </UsuarioContext.Consumer>
   )
 };
 
