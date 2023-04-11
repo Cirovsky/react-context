@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { Container, Voltar, TotalContainer, PagamentoContainer} from './styles';
 
 function Carrinho() {
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);  
   return (
+
     <Container>
       <Voltar />
       <h2>
