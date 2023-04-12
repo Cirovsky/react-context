@@ -8,12 +8,12 @@ import Produto from 'components/Produto';
 import NavBar from './NavBar';
 import { useContext } from 'react';
 import { UsuarioContext } from 'common/contexts/Usuario';
-import { CarrinhoContext } from 'common/contexts/Carrinho';
+import { useCarrinhoContext } from 'common/contexts/Carrinho';
 
 
 function Feira() {
   const {nome, saldo} = useContext(UsuarioContext);
-  const {total} = useContext(CarrinhoContext);
+  const {total} = useCarrinhoContext();
   const parcial = saldo - total;
   return (
     <Container>

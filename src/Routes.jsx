@@ -5,9 +5,9 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { UsuarioProvider } from 'common/contexts/Usuario';
 import { CarrinhoProvider } from 'common/contexts/Carrinho';
+import { PagamentoProvider } from 'common/contexts/Pagamento';
 
 export default function Routes() {
-
     return (
         <BrowserRouter>
             <Switch>
@@ -15,15 +15,17 @@ export default function Routes() {
                     <Route exact path='/'>
                         <Login />
                     </Route>
-                <CarrinhoProvider>
+                    <CarrinhoProvider>
+                        <PagamentoProvider>
                         <Route path='/feira'>
-                            <Feira/>
+                            <Feira />
                         </Route>
-                </CarrinhoProvider>
+                            <Route path='/carrinho'>
+                                <Carrinho />
+                            </Route>
+                        </PagamentoProvider>
+                    </CarrinhoProvider>
                 </UsuarioProvider>
-                <Route path='/carrinho'>
-                    <Carrinho />
-                </Route>
             </Switch>
         </BrowserRouter>
     )
